@@ -100,7 +100,7 @@ dist
 - Added Environment Variable
 
 ```env
-VITE_MFE_REMOTE_URL=https://YOUR-MUSIC-LIBRARY.netlify.app
+VITE_MFE_REMOTE_URL=https://bespoke-cannoli-e755bd.netlify.app/
 ```
 
 The Host dynamically loads the deployed Music Library remote application at runtime.
@@ -111,7 +111,7 @@ The Host dynamically loads the deployed Music Library remote application at runt
 
 Host Application
 
-https://YOUR-HOST.netlify.app
+https://melodious-cat-d19ddf.netlify.app/login
 
 ---
 
@@ -230,4 +230,4 @@ If I had more time, I would improve:
 
 Music Library Repository
 
-https://github.com/YOUR_USERNAME/music-library
+https://github.com/shyakasliwal/Micro--Frontend
