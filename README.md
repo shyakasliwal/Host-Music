@@ -44,7 +44,7 @@ host/
 ### Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/host.git
+git clone https://github.com/shyakasliwal/Host-Music.git
 cd host
 ```
 
