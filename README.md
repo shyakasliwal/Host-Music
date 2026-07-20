@@ -1,93 +1,117 @@
 # Music Library Host Application
 
-The **Host Application** acts as the container for the Music Library Micro Frontend. It loads the remote application dynamically using **Vite Module Federation** and provides authentication, routing, and application layout.
+The Host Application acts as the container for the Music Library Micro Frontend. It is responsible for authentication, application layout, and dynamically loading the Music Library using Vite Module Federation.
 
 ---
 
 ## Tech Stack
 
-* React
-* Vite
-* Module Federation (`@originjs/vite-plugin-federation`)
-* React Query
-* React Hook Form
-* Tailwind CSS
-* MSW (Mock Service Worker)
+- React
+- Vite
+- @originjs/vite-plugin-federation
+- React Query
+- React Hook Form
+- Tailwind CSS
+- MSW (Mock Service Worker)
 
 ---
 
 ## Features
 
-* Loads Music Library Micro Frontend dynamically
-* Lazy loading using Module Federation
-* Authentication using mock JWT
-* Role-based authorization
-* Admin/User access control
-* React Query integration
+- Host application for Micro Frontend architecture
+- Dynamic loading of Music Library
+- Authentication using Mock JWT
+- Role-based Authorization (Admin/User)
+- Lazy Loading
+- React Query Integration
 
 ---
 
 ## Project Structure
 
-```text
 host/
-│── src/
-│── public/
-│── vite.config.js
-│── package.json
-│── netlify.toml
-```
+├── src/
+├── public/
+├── vite.config.js
+├── package.json
+├── netlify.toml
+└── README.md
 
 ---
 
 ## Running Locally
 
-### 1. Clone Repository
+### Clone Repository
 
 ```bash
-git clone https://github.com/shyakasliwal/host-repository.git
-cd host-repository
+git clone https://github.com/YOUR_USERNAME/host.git
+cd host
 ```
 
-### 2. Install Dependencies
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Create Environment File
+### Create Environment File
 
-Create a `.env` file in the project root.
+Create a `.env` file.
 
 ```env
 VITE_MFE_REMOTE_URL=http://localhost:5001
 ```
 
-### 4. Start Development Server
+### Start Development Server
 
 ```bash
 npm run dev
 ```
 
-Host Application will run on:
+Host runs on:
 
 ```
 http://localhost:5000
 ```
 
-> **Important:** Start the Music Library Micro Frontend before running the Host Application.
+> **Important:** The Music Library Micro Frontend must be running before starting the Host Application.
 
 ---
 
 ## Deployment
 
-The Host Application is deployed on Netlify.
+Both applications are deployed independently on **Netlify**.
 
-Live Demo:
+### Host Deployment
+
+- Connected GitHub repository to Netlify
+- Build Command
+
+```bash
+npm run build
+```
+
+- Publish Directory
 
 ```
-https://melodious-cat-d19ddf.netlify.app/login
+dist
 ```
+
+- Added Environment Variable
+
+```env
+VITE_MFE_REMOTE_URL=https://YOUR-MUSIC-LIBRARY.netlify.app
+```
+
+The Host dynamically loads the deployed Music Library remote application at runtime.
+
+---
+
+## Live Demo
+
+Host Application
+
+https://YOUR-HOST.netlify.app
 
 ---
 
@@ -101,12 +125,12 @@ Password: admin123
 
 Permissions
 
-* View Songs
-* Filter Songs
-* Sort Songs
-* Group Songs
-* Add Songs
-* Delete Songs
+- View Songs
+- Filter Songs
+- Sort Songs
+- Group Songs
+- Add Songs
+- Delete Songs
 
 ---
 
@@ -118,51 +142,92 @@ Password: user123
 
 Permissions
 
-* View Songs
-* Filter Songs
-* Sort Songs
-* Group Songs
+- View Songs
+- Filter Songs
+- Sort Songs
+- Group Songs
 
 ---
 
 ## Micro Frontend Architecture
 
-This project follows a Micro Frontend architecture using Vite Module Federation.
+This project follows a Micro Frontend architecture using **Vite Module Federation**.
 
-The Host Application dynamically loads the Music Library Micro Frontend at runtime using a remote entry. This allows both applications to be developed, deployed, and maintained independently while still working together as a single application.
+The application is divided into two independent applications.
+
+### Host Application
+
+- Handles authentication
+- Provides application layout
+- Loads the Music Library dynamically
+- Shares dependencies such as React and React Query
+
+### Music Library
+
+- Exposes the Music Library component
+- Handles song fetching and CRUD operations
+- Can be deployed independently
+
+The Host imports the Music Library using:
+
+```env
+VITE_MFE_REMOTE_URL=http://localhost:5001
+```
+
+During development, the Host loads the remote from localhost.
+
+In production, the Host loads the deployed Netlify application through `remoteEntry.js`.
+
+This architecture allows both applications to be developed, deployed, and updated independently without rebuilding the Host.
 
 ---
 
 ## Authentication
 
-Authentication is implemented using a mock JWT stored in Local Storage.
+Authentication is implemented using a **Mock JWT** stored in Local Storage.
 
-Two roles are available:
+The Host application manages authentication and stores the logged-in user's role.
 
-* Admin
-* User
+Two roles are supported.
 
-UI functionality is rendered according to the authenticated user's role.
+### Admin
+
+- View Songs
+- Filter Songs
+- Sort Songs
+- Group Songs
+- Add Songs
+- Delete Songs
+
+### User
+
+- View Songs
+- Filter Songs
+- Sort Songs
+- Group Songs
+
+The Music Library reads the authenticated user's role from the Host and conditionally renders UI controls. Administrative actions such as Add Song and Delete Song are available only for Admin users.
 
 ---
 
 ## Trade-offs & Future Improvements
 
-For this assignment I used Vite Module Federation together with React Query and MSW to keep the application fully frontend-based without requiring a backend server.
+For this assignment, I used Vite Module Federation together with React Query and MSW to keep the application fully frontend-based without requiring a backend server.
 
-With more time I would:
+If I had more time, I would improve:
 
-* Add unit and integration tests
-* Improve authentication security
-* Add persistent storage
-* Improve error handling
-* Add CI/CD pipeline
-* Improve responsive design
+- Unit and Integration Testing
+- Better Authentication
+- Persistent Database
+- Better Error Handling
+- CI/CD Pipeline
+- Responsive UI Improvements
+- Performance Optimizations
 
 ---
 
 ## Related Repository
 
-Music Library Micro Frontend
+Music Library Repository
 
-https://github.com/shyakasliwal/Micro--Frontend
+https://github.com/YOUR_USERNAME/music-library
